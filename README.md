@@ -33,7 +33,7 @@ and enjoy the output files that are created.
 + Has sufficient point density. We achieve good results with 8-10 pts/m2 in the [3D BAG](https://3dbag.nl).
 + Well aligned with the 2D building polygon.
 + Do include some ground points around the building so that the software can determine the ground floor elevation.
-+ Pointcloud is automatically cropped to the extent of the 2D building polygon. 
++ Pointcloud is automatically cropped to the extent of the 2D building polygon.
 + In `.LAS` or `.LAZ` format.
 
 ### 2D building polygon
@@ -46,7 +46,7 @@ and enjoy the output files that are created.
 ## Installation
 
 ### Using the binary packages
-It will probably be easiest to use one of the binary packages on the Release page (docker, windows installer) as explained below. 
+It will probably be easiest to use one of the binary packages on the Release page (docker, windows installer) as explained below.
 
 ### Building from source
 In case you can not or do not want to use the binary packages, you can also build everything from source. This is only recommended if you know what you are doing, ie. have experience in compiling software.
@@ -78,7 +78,7 @@ geof flowchart.json
 Use `geof --help` to see the detailed help.
 
 ```shell
-Usage: 
+Usage:
    geof [-v|-p|-n|-h]
    geof <flowchart_file> [-V] [-g] [-w] [-c <file>] [--GLOBAL1=A --GLOBAL2=B ...]
 
@@ -146,7 +146,7 @@ Thus, a parameter set in the command line has the highest priority and overrides
 
 ### Building reconstruction
 
-The flowchart of the building reconstruction is in `flowcharts/gfc-brecon/single/reconstruction.json`.
+The flowchart of the building reconstruction is in `flowcharts/custom_reconstruction.json`.
 You need to use this flowchart to generate the 3D building models.
 However for you convenience we automatically install this flowchart and the script `lod22-reconstruct` to easily run it.
 The command `lod22-reconstruct` (`lod22-reconstruct.bat` on windows) is an alias for `geof long/path/reconstruction.json`.
@@ -161,7 +161,7 @@ lod22-reconstruct \
   --config test-data/config.toml
 ```
 
-Here we override the default values that are set in the flowchart. 
+Here we override the default values that are set in the flowchart.
 The `input_footprint` and `input_pointcloud` are passed directly in the command line.
 In addition, the `input_footprint_select=47` (to select the 47th feature from the input footprint file) is read from the config file `config.toml`.
 
@@ -171,7 +171,7 @@ By default the output is saved to the `output` directory.
 By default the output is generated in CityJSON, Wavefront OBJ and GeoPackage formats.
 To omit an output format leave the corresponding output parameter empty (see `lod22-reconstruct -g`).
 
-It is possible to save the model to a PostgreSQL database instead of a GeoPackage. 
+It is possible to save the model to a PostgreSQL database instead of a GeoPackage.
 To write to a database, you need to pass a [GDAL-style database connection string](https://gdal.org/drivers/vector/pg.html#connecting-to-a-database) and set the output format to `PostgreSQL`.
 
 ```shell
@@ -238,7 +238,8 @@ docker run \
 
 ```bash
 docker build -t ignfab/geoflow-builder:2022.06.17-debug -f builder.dockerfile .
-docker build -t ignfab/geoflow-lod22-reconstruct:2022.06.17-debug -f lod22-reconstruct.dockerfile .
+docker build -t ignfab/geoflow-lod22-reconstruct:latest -f lod22-reconstruct.dockerfile .
+docker tag ignfab/geoflow-lod22-reconstruct:latest ignfab/geoflow-lod22-reconstruct:2022.06.17-debug
 ```
 
 ## Citation

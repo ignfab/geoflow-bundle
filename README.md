@@ -5,6 +5,9 @@
 *A tool for reconstructing 3D building models from point clouds, fully automated, with high-detail. Free and open-source.*
 
 ## TLDR;
+This is an adaptation of [geoflow3d/geoflow-bundle](https://github.com/geoflow3d/geoflow-bundle) with
+fixes and adaptations to ignfab requirements and issues.
+
 [Install](https://github.com/geoflow3d/geoflow-bundle/releases) and run from your terminal
 ```shell
 lod22-reconstruct --input_footprint=my_footprint.gpkg --input_pointcloud=my_pointcloud.las
@@ -231,7 +234,14 @@ docker run \
   --config config.toml
 ```
 
-## Citation 
+## Docker image generation
+
+```bash
+docker build -t ignfab/geoflow-builder:2022.06.17-debug -f builder.dockerfile .
+docker build -t ignfab/geoflow-lod22-reconstruct:2022.06.17-debug -f lod22-reconstruct.dockerfile .
+```
+
+## Citation
 
 If you use the software in scientific publications, please see CITATION.bib
 
